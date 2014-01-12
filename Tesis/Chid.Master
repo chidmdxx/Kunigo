@@ -12,12 +12,14 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <header>
+        <asp:Image runat="server" CssClass="logo" ImageUrl="~/Content/images/logo.png" />
+    </header>
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="bodyholder" runat="server">
         
-        </asp:ContentPlaceHolder>
-    </div>
+            <asp:ContentPlaceHolder ID="bodyholder" runat="server">
+            </asp:ContentPlaceHolder>
+
     </form>
 </body>
 </html>
