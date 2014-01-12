@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Data">
+  <DataContextMoniker Name="/DataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="00f6bd8e-007e-4f16-a2fd-d76f78beac96" absoluteBounds="0.75, 2.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DataDataContext/Dislike" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2027e1f8-6e44-4129-b23c-fc879ef93608" absoluteBounds="0.765, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="969da8e7-11a4-42ed-8a55-1b710629645f" absoluteBounds="3.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DataDataContext/Like" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6729902e-fed8-4a14-8141-677aa52e2a8d" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3ae35b94-0569-444b-951f-10740bbf6338" absoluteBounds="3.75, 2.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DataDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79d6ed4e-e182-45a1-a083-5c83bfe4c7f6" absoluteBounds="3.765, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="594ff68b-19ac-4b16-84d8-79a5908db60f" absoluteBounds="0.625, 0.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataDataContext/Activity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5267cd11-a736-4fc8-9ab5-0a5ac5bf116b" absoluteBounds="0.64000000000000012, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
