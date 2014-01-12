@@ -219,6 +219,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\warning.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="feed.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
