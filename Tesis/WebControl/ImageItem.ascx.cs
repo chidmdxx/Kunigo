@@ -13,7 +13,7 @@ namespace Tesis.WebControl
         private string imageUrl;
         private string type;
         private string title;
-        string username;
+        private string username;
 
         public string ImageUrl
         {
@@ -31,6 +31,7 @@ namespace Tesis.WebControl
             }
         }
 
+        [PersistenceMode(PersistenceMode.Attribute)]
         public string Type
         {
             get
@@ -39,7 +40,7 @@ namespace Tesis.WebControl
             }
             set
             {
-                type = value;
+                type = value.ToLower();
             }
         }
 
@@ -57,40 +58,35 @@ namespace Tesis.WebControl
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            username = Session["user"].ToString();
             if (IsPostBack)
             {
                 return;
             }
             image.ImageUrl = imageUrl;
-            username = Session["user"].ToString();
+
         }
 
         protected void like_Click(object sender, EventArgs e)
         {
-            using (DataDataContext db = new DataDataContext())
-            {
-                Activity activity = new Activity();
-                activity.username = username;
-                activity.activityname = "like";
-                activity.typename = type;
-                activity.date = System.DateTime.UtcNow;
-                db.Activities.InsertOnSubmit(activity);
-                db.SubmitChanges();
-            }
+            Activity activity = new Activity();
+            activity.username = username;
+            activity.activityname = "like";
+            activity.typename = Type;
+            activity.date = System.DateTime.UtcNow;
+            var lista = (List<Activity>)Session["activity"];
+            lista.Add(activity);
         }
 
         protected void dislike_Click(object sender, EventArgs e)
         {
-            using (DataDataContext db = new DataDataContext())
-            {
-                Activity activity = new Activity();
-                activity.username = username;
-                activity.activityname = "dislike";
-                activity.typename = type;
-                activity.date = System.DateTime.UtcNow;
-                db.Activities.InsertOnSubmit(activity);
-                db.SubmitChanges();
-            }
+            Activity activity = new Activity();
+            activity.username = username;
+            activity.activityname = "dislike";
+            activity.typename = type;
+            activity.date = System.DateTime.UtcNow;
+            var lista = (List<Activity>)Session["activity"];
+            lista.Add(activity);
         }
     }
 }

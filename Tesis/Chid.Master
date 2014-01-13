@@ -11,14 +11,14 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onunload="">
     <header>
         <asp:Image runat="server" CssClass="logo" ImageUrl="~/Content/images/logo.png" />
     </header>
     <form id="form1" runat="server">
-        
-            <asp:ContentPlaceHolder ID="bodyholder" runat="server">
-            </asp:ContentPlaceHolder>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="bodyholder" runat="server">
+        </asp:ContentPlaceHolder>
 
     </form>
 </body>

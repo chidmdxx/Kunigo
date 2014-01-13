@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ImageItem.ascx.cs" Inherits="Tesis.WebControl.ImageItem" %>
-<asp:UpdatePanel runat="server">
+<asp:UpdatePanel runat="server" ViewStateMode="Enabled" EnableViewState="true">
     <ContentTemplate>
         <div class="post">
             <asp:Image ID="image" CssClass="imagepost" runat="server" />

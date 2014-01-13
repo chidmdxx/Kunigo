@@ -20,7 +20,7 @@ namespace Tesis
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["username"]!=null)
+            if (Session["user"] != null)
             {
                 Server.Transfer("feed.aspx", true);
             }

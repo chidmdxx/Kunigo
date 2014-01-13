@@ -57,6 +57,7 @@ namespace Tesis
                 ii.ID = count++.ToString();
                 ii.ImageUrl = p.url;
                 ii.Title = p.title;
+                ii.Type = p.subreddit;
                 feedpanel.Controls.Add(ii);
             }
         }
