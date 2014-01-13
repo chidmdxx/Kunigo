@@ -57,6 +57,10 @@ namespace Tesis.WebControl
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                return;
+            }
             image.ImageUrl = imageUrl;
             username = Session["user"].ToString();
         }
@@ -81,7 +85,7 @@ namespace Tesis.WebControl
             {
                 Activity activity = new Activity();
                 activity.username = username;
-                activity.activityname = "like";
+                activity.activityname = "dislike";
                 activity.typename = type;
                 activity.date = System.DateTime.UtcNow;
                 db.Activities.InsertOnSubmit(activity);
