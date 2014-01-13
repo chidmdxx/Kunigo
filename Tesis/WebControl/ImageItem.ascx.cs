@@ -71,6 +71,7 @@ namespace Tesis.WebControl
                 activity.typename = type;
                 activity.date = System.DateTime.UtcNow;
                 db.Activities.InsertOnSubmit(activity);
+                db.SubmitChanges();
             }
         }
 
@@ -84,6 +85,7 @@ namespace Tesis.WebControl
                 activity.typename = type;
                 activity.date = System.DateTime.UtcNow;
                 db.Activities.InsertOnSubmit(activity);
+                db.SubmitChanges();
             }
         }
     }
