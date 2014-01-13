@@ -14,7 +14,7 @@ namespace Tesis.WebControl
         private string type;
         private string title;
         string username;
-        
+
         public string ImageUrl
         {
             get
@@ -24,6 +24,10 @@ namespace Tesis.WebControl
             set
             {
                 imageUrl = value;
+                if (imageUrl.Contains("imgur"))
+                {
+                    imageUrl = imageUrl + ".jpg";
+                }
             }
         }
 

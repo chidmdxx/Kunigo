@@ -40,17 +40,16 @@ namespace Tesis
             }
             foreach(var r in roots)
             {
-                var post = r.data.children[0].data;
-                if (!post.is_self)
+                foreach (var children in r.data.children)
                 {
-                    posts.Add(post);
-                }
-                if(posts.Count>100)
-                {
-                    break;
+                    var post = children.data;
+                    if (!post.is_self && (post.domain.Contains("imgur") || post.url.EndsWith(".jpg") || post.url.EndsWith(".png") || post.url.EndsWith(".jpeg")))
+                    {
+                        posts.Add(post);
+                    }
                 }
             }
-            posts.OrderBy(p => p.score);
+            posts.OrderByDescending(p => p.score);
             var count=0;
             foreach(var p in posts)
             {

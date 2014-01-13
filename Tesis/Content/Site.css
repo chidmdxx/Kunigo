@@ -86,6 +86,11 @@ div.signup {
 .validator {
     color: red;
     float:right;
-    z-index:16;
-    
+    z-index:16;   
+}
+
+div.survey {
+    margin-left:10px;
+    margin-top:10px;
+    line-height:150%;
 }

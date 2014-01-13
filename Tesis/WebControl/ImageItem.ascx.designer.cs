@@ -28,7 +28,7 @@ namespace Tesis.WebControl {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button like;
+        protected global::System.Web.UI.WebControls.ImageButton like;
         
         /// <summary>
         /// dislike control.
@@ -37,6 +37,6 @@ namespace Tesis.WebControl {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button dislike;
+        protected global::System.Web.UI.WebControls.ImageButton dislike;
     }
 }

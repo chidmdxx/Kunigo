@@ -20,11 +20,11 @@ namespace Tesis
             Session["user"] = "chid";
             if (username == null)
             {
-                //Server.Transfer("index.aspx", true);
+                Server.Transfer("index.aspx", true);
             }
             if (register == null || !(bool)register)
             {
-                //Server.Transfer("feed.aspx", true);
+                Server.Transfer("feed.aspx", true);
             }
             foreach (string t in App.Categories)
             {

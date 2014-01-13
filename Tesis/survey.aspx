@@ -4,11 +4,11 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="bodyholder">
 
-    <div>
+    <div class="survey">
         <asp:Panel ID="surveydata" runat="server" EnableViewState="true">
         </asp:Panel>
         <asp:Button runat="server" OnClick="Unnamed_Click" Text="Submit" />
     </div>
 
 </asp:Content>
-</html>
+
