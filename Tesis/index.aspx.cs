@@ -19,7 +19,11 @@ namespace Tesis
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var cookie = Response.Cookies["UserInfo"];
+            if(cookie!=null)
+            {
+                Session["user"] = cookie["user"];
+            }
             if (Session["user"] != null)
             {
                 Server.Transfer("feed.aspx", true);
@@ -100,6 +104,10 @@ namespace Tesis
             }
             else
             {
+                var cookie = new HttpCookie("UserInfo");
+                cookie["user"] = Session["user"].ToString();
+                cookie.Expires = DateTime.Now.AddMonths(3);
+                Response.Cookies.Add(cookie);
                 Server.Transfer("feed.aspx", true);
             }
 
