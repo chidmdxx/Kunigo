@@ -10,7 +10,6 @@
     {
         RouteConfig.RegisterRoutes(RouteTable.Routes);
         BundleConfig.RegisterBundles(BundleTable.Bundles);
-        Server.Transfer("index.aspx", true);
     }
 
     void Session_End(object sender, EventArgs e)
