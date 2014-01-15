@@ -10,20 +10,26 @@
     {
         RouteConfig.RegisterRoutes(RouteTable.Routes);
         BundleConfig.RegisterBundles(BundleTable.Bundles);
+        Server.Transfer("index.aspx", true);
     }
 
     void Session_End(object sender, EventArgs e)
     {
         var list = (List<Activity>)Session["activity"];
-        DataDataContext db = new DataDataContext();
-        db.Activities.InsertAllOnSubmit(list);
-        db.SubmitChanges();
+        if (list.Count > 0)
+        {
+            using (DataDataContext db = new DataDataContext())
+            {
+                db.Activities.InsertAllOnSubmit(list);
+                db.SubmitChanges();
+            }
+        }
     }
 
     void Session_Start(object sender, EventArgs e)
     {
         Session["activity"] = new List<Activity>();
-        Session.Timeout = 1;
+        Session.Timeout = 5;
     }
     
 </script>
