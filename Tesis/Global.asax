@@ -23,6 +23,7 @@
     void Session_Start(object sender, EventArgs e)
     {
         Session["activity"] = new List<Activity>();
+        Session.Timeout = 1;
     }
     
 </script>
