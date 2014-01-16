@@ -14,9 +14,9 @@ namespace Tesis
         List<RootObject> roots = new List<RootObject>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Thread> threads = new List<Thread>();
             List<Data2> posts = new List<Data2>();
-            List<Like> likes; 
+            List<Like> likes;
+            string sub=string.Empty;
             var username = Session["user"];
             if (username == null)
             {
@@ -29,15 +29,9 @@ namespace Tesis
             }
             foreach(var like in likes)
             {
-                var temp = like.likename;
-                Thread thread = new Thread(() => GetjsonStream(temp));
-                thread.Start();
-                threads.Add(thread);
+               sub=string.Format("{0}+{1}",sub,like);              
             }
-            foreach(var t in threads)
-            {
-                t.Join();
-            }
+            GetjsonStream(sub);            
             foreach(var r in roots)
             {
                 foreach (var children in r.data.children)
@@ -49,7 +43,6 @@ namespace Tesis
                     }
                 }
             }
-            posts.OrderByDescending(p => p.score);
             var count=0;
             foreach(var p in posts)
             {
@@ -65,7 +58,7 @@ namespace Tesis
         public void GetjsonStream(string type)
         {
             string json;
-            var url = string.Format("http://www.reddit.com/r/{0}.json", type);
+            var url = string.Format("http://www.reddit.com/r/{0}.json?limit=100", type);
             using (var webClient = new System.Net.WebClient())
             {
                 json = webClient.DownloadString(url);
