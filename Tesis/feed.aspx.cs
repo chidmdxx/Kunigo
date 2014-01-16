@@ -29,7 +29,7 @@ namespace Tesis
             }
             foreach(var like in likes)
             {
-               sub=string.Format("{0}+{1}",sub,like);              
+               sub=string.Format("{0}+{1}",sub,like.likename);              
             }
             GetjsonStream(sub);            
             foreach(var r in roots)
