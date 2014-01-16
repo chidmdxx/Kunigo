@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Web.Services;
 using Tesis.Code;
 using Tesis.WebControl;
 
@@ -12,9 +13,10 @@ namespace Tesis
     {
         
         List<RootObject> roots = new List<RootObject>();
+        List<Data2> posts;
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Data2> posts = new List<Data2>();
+            posts = new List<Data2>();
             List<Like> likes;
             string sub=string.Empty;
             var username = Session["user"];
@@ -52,8 +54,11 @@ namespace Tesis
                 ii.Title = p.title;
                 ii.Type = p.subreddit;
                 feedpanel.Controls.Add(ii);
-                
+                if (count > 9)
+                    break;
             }
+
+            
         }
 
         public void GetjsonStream(string type)
@@ -65,10 +70,12 @@ namespace Tesis
                 json = webClient.DownloadString(url);
             }
             var temp=JsonConvert.DeserializeObject<RootObject>(json);
-            lock (roots)
-            {
+
                 roots.Add(temp);
-            }
+            
         }
+
+
+        
     }
 }
