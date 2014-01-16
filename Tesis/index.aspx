@@ -6,6 +6,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="bodyholder">
     <div class="indexall">
         <div class="login">
+            <h2>login</h2>
             <asp:Label runat="server" Text="User Name"></asp:Label>
             <asp:TextBox ID="username" runat="server"></asp:TextBox><br />
             <asp:Label runat="server" Text="Password"></asp:Label>
@@ -14,6 +15,7 @@
             <asp:Label ID="errorlogin" CssClass="error" runat="server" Text="The username or password doesn't match" Visible="false"></asp:Label>
         </div>
         <div class="signup">
+            <h2>signup</h2>
             <asp:Label runat="server" Text="User Name"></asp:Label>
             <asp:TextBox ID="usernamesign" runat="server"></asp:TextBox>
             <asp:RegularExpressionValidator runat="server"

@@ -32,7 +32,6 @@ namespace Tesis.WebControl
             }
         }
 
-        [PersistenceMode(PersistenceMode.Attribute)]
         public string Type
         {
             get
@@ -59,12 +58,12 @@ namespace Tesis.WebControl
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            username = Session["user"].ToString();
+            activity = (Activity)Session[this.ID];
             if (IsPostBack)
             {
                 return;
             }
-            username = Session["user"].ToString();
             titlelabel.Text = title;
             image.ImageUrl = imageUrl;
 
@@ -73,7 +72,7 @@ namespace Tesis.WebControl
         protected void like_Click(object sender, EventArgs e)
         {
             var lista = (List<Activity>)Session["activity"];
-            if (activity!=null)
+            if (activity != null)
             {
                 lista.Remove(activity);
                 like.CssClass = "unselected";
@@ -85,6 +84,7 @@ namespace Tesis.WebControl
             activity.activityname = "like";
             activity.typename = Type;
             activity.date = System.DateTime.UtcNow;
+            Session[this.ID] = activity;
             lista.Add(activity);
         }
 
@@ -103,6 +103,7 @@ namespace Tesis.WebControl
             activity.activityname = "dislike";
             activity.typename = type;
             activity.date = System.DateTime.UtcNow;
+            Session[this.ID] = activity;
             lista.Add(activity);
         }
     }

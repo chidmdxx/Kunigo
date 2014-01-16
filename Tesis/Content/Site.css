@@ -96,25 +96,33 @@ div.survey {
 }
 
 div.post {
-    margin-left: 10px;
+    margin-left: 40px;
     margin-top: 10px;
 }
 
 .imagepost {
-    max-width: 1000px;
-    max-height: 560px;
+    max-width: 800px;
+    max-height: 800px;
     width: auto;
     height: auto;
 }
 
 .selected {
-    background-color: #ffd800;
+    background-color: #d4c304;
 }
 
 .unselected {
-    background-color:black;
+    background-color: black;
 }
 
-div.posttitle {
-    float:right;
+div.votes {
+    margin-left: -30px;
+}
+
+h2 {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 32px;
+    margin-left: -30px;
+    margin-bottom:10px;
 }
