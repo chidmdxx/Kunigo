@@ -107,4 +107,14 @@ div.post {
     height: auto;
 }
 
+.selected {
+    background-color: #ffd800;
+}
 
+.unselected {
+    background-color:black;
+}
+
+div.posttitle {
+    float:right;
+}

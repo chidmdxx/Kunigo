@@ -14,6 +14,7 @@ namespace Tesis.WebControl
         private string type;
         private string title;
         private string username;
+        private Activity activity;
 
         public string ImageUrl
         {
@@ -58,34 +59,50 @@ namespace Tesis.WebControl
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            username = Session["user"].ToString();
+            
             if (IsPostBack)
             {
                 return;
             }
+            username = Session["user"].ToString();
+            titlelabel.Text = title;
             image.ImageUrl = imageUrl;
 
         }
 
         protected void like_Click(object sender, EventArgs e)
         {
-            Activity activity = new Activity();
+            var lista = (List<Activity>)Session["activity"];
+            if (activity!=null)
+            {
+                lista.Remove(activity);
+                like.CssClass = "unselected";
+                dislike.CssClass = "unselected";
+            }
+            like.CssClass = "selected";
+            activity = new Activity();
             activity.username = username;
             activity.activityname = "like";
             activity.typename = Type;
             activity.date = System.DateTime.UtcNow;
-            var lista = (List<Activity>)Session["activity"];
             lista.Add(activity);
         }
 
         protected void dislike_Click(object sender, EventArgs e)
         {
-            Activity activity = new Activity();
+            var lista = (List<Activity>)Session["activity"];
+            if (activity != null)
+            {
+                lista.Remove(activity);
+                like.CssClass = "unselected";
+                dislike.CssClass = "unselected";
+            }
+            dislike.CssClass = "selected";
+            activity = new Activity();
             activity.username = username;
             activity.activityname = "dislike";
             activity.typename = type;
             activity.date = System.DateTime.UtcNow;
-            var lista = (List<Activity>)Session["activity"];
             lista.Add(activity);
         }
     }
