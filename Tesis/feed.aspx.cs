@@ -11,32 +11,44 @@ namespace Tesis
 {
     public partial class feed : System.Web.UI.Page
     {
-        
-        List<RootObject> roots = new List<RootObject>();
-        List<Data2> posts;
+
+
+        List<Data2> posts
+        {
+            get
+            {
+                return (List<Data2>)Session["posts"];
+            }
+            set
+            {
+                Session["posts"] = value;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            posts = new List<Data2>();
-            List<Like> likes;
-            string sub=string.Empty;
-            var username = Session["user"];
-            if (username == null)
+            if (!IsPostBack)
             {
-                Server.Transfer("index.aspx", true);
-            }
-            username = username.ToString();
-            using (DataDataContext db = new DataDataContext())
-            {
-                likes = db.Likes.Where(a => a.username.Equals(username)).ToList();
-            }
-            foreach(var like in likes)
-            {
-               sub=string.Format("{0}+{1}",sub,like.likename);              
-            }
-            GetjsonStream(sub);            
-            foreach(var r in roots)
-            {
-                foreach (var children in r.data.children)
+                posts = new List<Data2>();
+                RootObject root;
+                List<Like> likes;
+                string sub = string.Empty;
+                var username = Session["user"];
+                if (username == null)
+                {
+                    Server.Transfer("index.aspx", true);
+                }
+                username = username.ToString();
+                using (DataDataContext db = new DataDataContext())
+                {
+                    likes = db.Likes.Where(a => a.username.Equals(username)).ToList();
+                }
+                foreach (var like in likes)
+                {
+                    sub = string.Format("{0}+{1}", sub, like.likename);
+                }
+                root = GetjsonStream(sub);
+
+                foreach (var children in root.data.children)
                 {
                     var post = children.data;
                     if (!post.is_self && (post.domain.Contains("imgur") || post.url.EndsWith(".jpg") || post.url.EndsWith(".png") || post.url.EndsWith(".jpeg")))
@@ -45,23 +57,10 @@ namespace Tesis
                     }
                 }
             }
-            var count=0;
-            foreach(var p in posts)
-            {
-                var ii = LoadControl("~/WebControl/ImageItem.ascx") as ImageItem;
-                ii.ID = count++.ToString();
-                ii.ImageUrl = p.url;
-                ii.Title = p.title;
-                ii.Type = p.subreddit;
-                feedpanel.Controls.Add(ii);
-                if (count > 9)
-                    break;
-            }
-
             
         }
 
-        public void GetjsonStream(string type)
+        public RootObject GetjsonStream(string type)
         {
             string json;
             var url = string.Format("http://www.reddit.com/r/{0}.json?limit=100", type);
@@ -71,7 +70,7 @@ namespace Tesis
             }
             var temp=JsonConvert.DeserializeObject<RootObject>(json);
 
-                roots.Add(temp);
+            return temp;
             
         }
 

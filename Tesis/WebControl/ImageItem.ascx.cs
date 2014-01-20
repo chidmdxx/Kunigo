@@ -1,34 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Tesis.Code;
 
 namespace Tesis.WebControl
 {
     public partial class ImageItem : System.Web.UI.UserControl
     {
-        private string imageUrl;
-        private string type;
-        private string title;
-        private string username;
-        private Activity activity;
+        private string idd;
+
+        public string Idd
+        {
+            set
+            {
+                idd = value;
+            }
+            get
+            {
+                return idd;
+            }
+        }
+        ImageItemContainer container
+        {
+            get
+            {
+                return (ImageItemContainer)Session[this.Idd];
+            }
+            set
+            {
+                Session[this.Idd] = value;
+            }
+        }
+        string username
+        {
+            get
+            {
+                return container.Username;
+            }
+            set
+            {
+                container.Username = value;
+            }
+        }
+        Activity activity
+        {
+            get
+            {
+                return container.Activity;
+            }
+            set
+            {
+                container.Activity = value;
+            }
+        }
 
         public string ImageUrl
         {
             get
             {
-                return imageUrl;
+                return container.ImageUrl;
             }
             set
             {
-                imageUrl = value;
-                if (imageUrl.Contains("imgur"))
-                {
-                    imageUrl = imageUrl + ".jpg";
-                }
+                container.ImageUrl = value;
             }
         }
 
@@ -36,11 +69,11 @@ namespace Tesis.WebControl
         {
             get
             {
-                return type;
+                return container.Type;
             }
             set
             {
-                type = value.ToLower();
+                container.Type = value;
             }
         }
 
@@ -48,24 +81,34 @@ namespace Tesis.WebControl
         {
             get
             {
-                return title;
+                return container.Title;
             }
             set
             {
-                title = value;
+                container.Title = value;
             }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            username = Session["user"].ToString();
-            activity = (Activity)Session[this.ID];
-            if (IsPostBack)
+            if (!IsPostBack)
             {
-                return;
+                titlelabel.Text = Title;
+                image.ImageUrl = ImageUrl;
             }
-            titlelabel.Text = title;
-            image.ImageUrl = imageUrl;
+            if(activity!=null)
+            {
+                if(activity.activityname=="like")
+                {
+                    like.CssClass = "selected";
+                    dislike.CssClass = "unselected";
+                }
+                else
+                {
+                    like.CssClass = "unselected";
+                    dislike.CssClass = "selected";
+                }
+            }
 
         }
 
@@ -84,7 +127,6 @@ namespace Tesis.WebControl
             activity.activityname = "like";
             activity.typename = Type;
             activity.date = System.DateTime.UtcNow;
-            Session[this.ID] = activity;
             lista.Add(activity);
         }
 
@@ -101,9 +143,8 @@ namespace Tesis.WebControl
             activity = new Activity();
             activity.username = username;
             activity.activityname = "dislike";
-            activity.typename = type;
+            activity.typename = Type;
             activity.date = System.DateTime.UtcNow;
-            Session[this.ID] = activity;
             lista.Add(activity);
         }
     }

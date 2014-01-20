@@ -176,6 +176,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Code\ImageItemContainer.cs" />
     <Compile Include="Code\Reddit.cs" />
     <Compile Include="Code\Security.cs" />
     <Compile Include="feed.aspx.cs">
