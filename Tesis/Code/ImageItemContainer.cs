@@ -11,18 +11,7 @@ namespace Tesis.Code
         private string type;
         private string title;
         private Activity activity;
-        private string username;
-        public string Username
-        {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                username = value;
-            }
-        }
+ 
         public Activity Activity
         {
             get

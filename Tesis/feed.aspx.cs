@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web.Services;
+using System.Web.UI.WebControls;
 using Tesis.Code;
 using Tesis.WebControl;
 
@@ -56,8 +57,11 @@ namespace Tesis
                         posts.Add(post);
                     }
                 }
+
+                feedpanel.DataSource = posts;
+                feedpanel.DataBind();
+
             }
-            
         }
 
         public RootObject GetjsonStream(string type)
@@ -68,13 +72,42 @@ namespace Tesis
             {
                 json = webClient.DownloadString(url);
             }
-            var temp=JsonConvert.DeserializeObject<RootObject>(json);
+            var temp = JsonConvert.DeserializeObject<RootObject>(json);
 
             return temp;
-            
+
         }
 
+       
 
-        
+        protected void DataPagerProducts_PreRender(object sender, EventArgs e)
+        {
+            feedpanel.DataSource = posts;
+            feedpanel.DataBind();
+        }
+
+       
+        protected void like_Command(object sender, CommandEventArgs e)
+        {
+            string action = e.CommandName.ToString();
+            string[] param = e.CommandArgument.ToString().Split(',');
+            var button = (ImageButton)sender;
+            button.CssClass = "selected";
+            Activity activity;
+            var lista = (List<Activity>)Session["activity"];
+            if (Session[param[1]] != null)
+            {
+                activity = (Activity)Session[param[1]];
+                lista.Remove(activity);
+            }
+            activity = new Activity();
+            activity.username = Session["user"].ToString();
+            activity.activityname = action;
+            activity.typename = param[0];
+            activity.date = System.DateTime.UtcNow;
+            Session[param[1]] = activity;
+            lista.Add(activity);
+        }
+
     }
 }

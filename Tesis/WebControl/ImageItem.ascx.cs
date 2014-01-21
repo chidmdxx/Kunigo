@@ -16,13 +16,19 @@ namespace Tesis.WebControl
             }
             get
             {
+
                 return idd;
+
             }
         }
         ImageItemContainer container
         {
             get
             {
+                if (Session[this.Idd] == null)
+                {
+                    Session[this.Idd] = new ImageItemContainer();
+                }
                 return (ImageItemContainer)Session[this.Idd];
             }
             set
@@ -34,12 +40,9 @@ namespace Tesis.WebControl
         {
             get
             {
-                return container.Username;
+                return Session["user"].ToString();
             }
-            set
-            {
-                container.Username = value;
-            }
+
         }
         Activity activity
         {
@@ -91,14 +94,18 @@ namespace Tesis.WebControl
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ViewState["info"] != null)
             {
-                titlelabel.Text = Title;
-                image.ImageUrl = ImageUrl;
+                Idd = (string)ViewState["info"];
             }
-            if(activity!=null)
+            else
             {
-                if(activity.activityname=="like")
+                ViewState["info"] = Idd;
+            }
+
+            if (activity != null)
+            {
+                if (activity.activityname == "like")
                 {
                     like.CssClass = "selected";
                     dislike.CssClass = "unselected";
@@ -110,6 +117,12 @@ namespace Tesis.WebControl
                 }
             }
 
+        }
+
+        protected void Page_PreRender(Object sender, EventArgs e)
+        {
+            titlelabel.Text = Title;
+            image.ImageUrl = ImageUrl;
         }
 
         protected void like_Click(object sender, EventArgs e)
