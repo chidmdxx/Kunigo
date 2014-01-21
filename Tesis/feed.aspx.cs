@@ -54,6 +54,10 @@ namespace Tesis
                     var post = children.data;
                     if (!post.is_self && (post.domain.Contains("imgur") || post.url.EndsWith(".jpg") || post.url.EndsWith(".png") || post.url.EndsWith(".jpeg")))
                     {
+                        if(post.domain.Contains("imgur"))
+                        {
+                            post.domain = post.domain + ".jpg";
+                        }
                         posts.Add(post);
                     }
                 }

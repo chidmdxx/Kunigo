@@ -26,9 +26,9 @@
         <asp:DataPager ID="DataPagerProducts" runat="server" PagedControlID="feedpanel"
             PageSize="10" OnPreRender="DataPagerProducts_PreRender">
             <Fields>
-                <asp:NextPreviousPagerField ShowFirstPageButton="false" ShowNextPageButton="true" />
+                <asp:NextPreviousPagerField ShowFirstPageButton="false" ShowNextPageButton="false" />
                 <asp:NumericPagerField />
-                <asp:NextPreviousPagerField ShowLastPageButton="false" ShowPreviousPageButton="true" />
+                <asp:NextPreviousPagerField ShowLastPageButton="false" ShowPreviousPageButton="false" />
             </Fields>
         </asp:DataPager>
     </div>
