@@ -52,11 +52,11 @@ namespace Tesis
                 foreach (var children in root.data.children)
                 {
                     var post = children.data;
-                    if (!post.is_self && (post.domain.Contains("imgur") || post.url.EndsWith(".jpg") || post.url.EndsWith(".png") || post.url.EndsWith(".jpeg")))
+                    if (!post.is_self && (post.url.Contains("imgur") || post.url.EndsWith(".jpg") || post.url.EndsWith(".png") || post.url.EndsWith(".jpeg")))
                     {
-                        if(post.domain.Contains("imgur"))
+                        if (post.url.Contains("imgur"))
                         {
-                            post.domain = post.domain + ".jpg";
+                            post.url = post.url + ".jpg";
                         }
                         posts.Add(post);
                     }
